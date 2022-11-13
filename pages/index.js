@@ -1,10 +1,79 @@
 import Head from "next/head"
-import Image from "next/image"
-import { ApolloClient, InMemoryCache, gql } from "@apollo/client"
+import { useState } from "react"
+import DatePicker from "react-date-picker/dist/entry.nostyle"
 
-export default function Home({ launches }) {
-   console.log("launches", launches)
-   console.log("img", launches[0].links.mission_patch)
+export default function Home({}) {
+   const [selectedDay, setSelectedDay] = useState(new Date())
+   const [selectedTable, setSelectedTable] = useState()
+
+   // //get date object
+   // const availabletime = new Date()
+   // //set the date value to the selected day
+   // availabletime.setDate(selectedDay.getDate())
+   // //set the month value to the selected month
+   // availabletime.setMonth(selectedDay.getMonth())
+   // //set the time value to the from me define available slot
+   // availabletime.setHours(10, 0, 0, 0)
+
+   const [appoint, setAppoint] = useState([])
+
+   const [available, setAvailable] = useState(["10:00-11:00"])
+
+   const [tables, setTables] = useState([
+      {
+         tableId: 1,
+         customerID: 1,
+         customerName: "Sven",
+         end: "",
+         start: "",
+      },
+      {
+         tableId: 2,
+         customerID: 2,
+         customerName: "Sven",
+         end: "",
+         start: "",
+      },
+
+      {
+         tableId: 3,
+         customerID: 3,
+         customerName: "Sven",
+         end: "",
+         start: "",
+      },
+   ])
+   console.log(tables)
+   //ondaychange push day to currently selected table
+   function onDayChange(e) {
+      setSelectedDay(e)
+   }
+   //ondaychange push time to currently selected table
+   function pushTimeToSelectedTable(e) {
+      const newEvent = {
+         ...selectedTable,
+         //starttime
+         start: new Date(selectedDay.setHours(10, 0, 0, 0)),
+         //endtime
+         end: new Date(selectedDay.setHours(11, 0, 0, 0)),
+      }
+      setSelectedTable(newEvent)
+   }
+
+   //currently seleted table save to TABLE array
+   function clicky() {
+      const editTables = [...tables]
+      const filterTables = tables.findIndex((item) => {
+         return item.tableId == selectedTable.tableId
+      })
+      editTables[filterTables] = selectedTable
+      setTables(editTables)
+   }
+
+   //set selected Table
+   function selectTable(table) {
+      setSelectedTable(table)
+   }
 
    return (
       <div>
@@ -14,49 +83,54 @@ export default function Home({ launches }) {
             <link rel="icon" href="/favicon.ico" />
          </Head>
 
-         {launches.map((item) => {
-            return (
-               <h1 className="text-white" key={item.id}>
-                  {item.id} {item.launch_date_local} {item.mission_name}
+         <h1>All tables</h1>
+         {tables.map((item) => {
+            return item.tableId !== selectedTable?.tableId ? (
+               <h1
+                  className="w-full px-10 text-black bg-slate-300"
+                  key={item.tableId}
+                  onClick={() => selectTable(item)}
+               >
+                  {item.tableId}
+               </h1>
+            ) : (
+               <h1
+                  className="w-full px-10 text-black bg-red-400"
+                  key={item.tableId}
+                  onClick={() => selectTable(item)}
+               >
+                  {item.tableId}
                </h1>
             )
          })}
-         <img alt="bla" src={launches[0].links.mission_patch} />
+         {!selectedTable && <h1>Currently No Selected Table</h1>}
+         {selectedTable ? (
+            <div>
+               <h1>{selectedTable.tableId}</h1>
+               {/* <h1> {selectedDay.toLocaleDateString()} </h1> */}
+               <DatePicker onChange={onDayChange} value={selectedDay} />
+
+               {available
+                  ? available.map((item, i) => {
+                       return (
+                          <h2
+                             key={i}
+                             onClick={() => pushTimeToSelectedTable(item)}
+                          >
+                             {item}
+                          </h2>
+                       )
+                    })
+                  : null}
+               <button onClick={clicky}>CLick mE</button>
+            </div>
+         ) : null}
       </div>
    )
 }
 
 export async function getStaticProps() {
-   const client = new ApolloClient({
-      uri: "https://api.spacex.land/graphql/",
-      cache: new InMemoryCache(),
-   })
-   const { data } = await client.query({
-      query: gql`
-         query GetLaunches {
-            launchesPast(limit: 10) {
-               id
-               mission_name
-               launch_date_local
-               launch_site {
-                  site_name_long
-               }
-               links {
-                  article_link
-                  video_link
-                  mission_patch
-               }
-               rocket {
-                  rocket_name
-               }
-            }
-         }
-      `,
-   })
-
    return {
-      props: {
-         launches: data.launchesPast,
-      },
+      props: {},
    }
 }
