@@ -1,11 +1,13 @@
 import Head from "next/head"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+//TODO
 import Image from "next/image"
 import Link from "next/link"
 import ReactPageScroller from "react-page-scroller"
 import { motion } from "framer-motion"
-import { AnimatePresence } from "framer-motion"
+
 import { useNavContext } from "../context/navigation"
+import { useInView } from "framer-motion"
 
 const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }
 
@@ -39,13 +41,18 @@ export default function Home({}) {
    const [selectedTable, setSelectedTable] = useState()
    const [menuOpen, setMenuOpen] = useNavContext()
 
-   //click
-   function clicky() {}
+   useEffect(() => {
+      console.log("Element is in view: ")
+   }, [])
 
    let options = {
       animationTimer: 850,
       animationTimerBuffer: 0,
       renderAllPagesOnFirstRender: true,
+      onBeforePageScroll: () => {
+         //TODO
+         console.log("before scroll add state to component with animation")
+      },
    }
 
    return (
@@ -60,70 +67,81 @@ export default function Home({}) {
             {...options}
             ref={(c) => (this.reactPageScroller = c)}
          >
-            <motion.div className="flex items-center justify-center h-[100vh] px-[70px] ">
-               <div className="overflow-hidden">
-                  <div className="w-1/2 ">
-                     <div className="overflow-hidden">
-                        <motion.h1
-                           animate={menuOpen ? "open" : "closed"}
-                           variants={variants}
-                           className="text-6xl"
-                        >
-                           Hello my name is
-                        </motion.h1>
-                     </div>
-                     <div className="overflow-hidden">
-                        <motion.h1
-                           animate={menuOpen ? "open" : "closed"}
-                           variants={variants}
-                           className="mb-10 text-6xl font-semibold"
-                        >
-                           Sven Rehm
-                        </motion.h1>
-                     </div>
-                     <div className="overflow-hidden">
-                        <motion.h3
-                           animate={menuOpen ? "open" : "closed"}
-                           variants={variants}
-                           className="w-2/3 text-2xl"
-                        >
-                           Ich bin ein Frontend-Webentwickler mit einer
-                           Leidenschaft für die Erstellung von sauberen und
-                           benutzerfreundlichen Webseiten.
-                        </motion.h3>
-                     </div>
+            <motion.div className="flex items-center justify-center   h-[100vh] px-[70px] ">
+               <div className="w-1/2 ">
+                  <div className="overflow-hidden">
+                     <motion.h1
+                        animate={menuOpen ? "open" : "closed"}
+                        variants={variants}
+                        className="font-bold text-7xl"
+                     >
+                        HALLO,
+                        <span className="mb-10 text-6xl font-normal">
+                           {" "}
+                           mein name ist
+                        </span>
+                     </motion.h1>
+                     <h1 className="mb-10 text-[90px] font-bold">SVEN REHM</h1>
                   </div>
+                  <div className="mb-10 overflow-hidden">
+                     <motion.h3
+                        animate={menuOpen ? "open" : "closed"}
+                        variants={variants}
+                        className="text-3xl leading-normal font-opensans"
+                     >
+                        Ich bin ein{" "}
+                        <span className="font-bold">
+                           Webdesigner/Entwickler
+                        </span>
+                        <br></br>
+                        mit einer passion für die erschaffung von
+                        atemberaubenden Webseiten.
+                     </motion.h3>
+                  </div>
+
+                  <Link href="/portfolio" className="relative text-3xl meins">
+                     Portfolio
+                  </Link>
+                  <Link
+                     href="/portfolio"
+                     className="relative ml-10 text-3xl meins"
+                  >
+                     Portfolio
+                  </Link>
                </div>
-               <div className="w-1/2">
-                  {/* <Image
+
+               <div className="flex items-center justify-end w-1/2 ">
+                  <Image
                      alt="me"
                      src="/img1.jpg"
-                     width={200}
-                     height={200}
-                  ></Image> */}
+                     width={600}
+                     height={600}
+                  ></Image>
                </div>
             </motion.div>
 
-            <section className="h-[100vh] section">
-               <div className="hiddenbyme">
+            <section className="h-[100vh] section relative">
+               <div
+                  className="relative overflow-hidden hiddenbyme top-1/2 left-1/2 
+                  w-[1100px]
+                  h-[450px] transform -translate-x-1/2 -translate-y-1/2 "
+                  // className="width-[1100px] heigth-[450px] top-1/2 left-1/2 relative transform -translate-x-1/2 -translate-y-1/2 overflow-hidden "
+               >
                   <motion.div
                      animate={menuOpen ? "open" : "closed"}
                      variants={variants2}
-                     className="overflow-hidden width-[1100px]    height-[450px]
-                     top-1/2
-                     left-1/2
-                     transform -translate-x-1/2 -translate-y-1/2
-                     relative
-                     reflection"
+                     //need w and h
+                     className="w-[1100px] h-[450px] relative transform -translate-x-1/2 -translate-y-1/2 left-1/2  overflow-hidden"
                   >
-                     <motion.h1
-                        exit={{ opacity: 0 }}
-                        transition={transition}
-                        className="absolute z-50 text-5xl text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
-                     >
-                        Portfolio
-                     </motion.h1>
                      <Link href="/project" scroll={false}>
+                        <motion.h1
+                           exit={{ opacity: 0 }}
+                           transition={transition}
+                           className="absolute z-50 text-5xl text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2"
+                        >
+                           Portfolio
+                        </motion.h1>
+
                         <motion.img
                            whileHover={{ scale: 1.1 }}
                            transition={transition}
@@ -134,7 +152,7 @@ export default function Home({}) {
                   </motion.div>
                </div>
             </section>
-            <section className="h-[100vh] section">
+            {/* <section className="h-[100vh] section">
                <div className="hiddenbyme">
                   <motion.div
                      animate={menuOpen ? "open" : "closed"}
@@ -181,7 +199,7 @@ export default function Home({}) {
                      </Link>
                   </motion.div>
                </div>
-            </section>
+            </section> */}
          </ReactPageScroller>
       </>
    )

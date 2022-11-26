@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import { useNavContext } from "../context/navigation"
@@ -9,8 +9,11 @@ import { VscClose } from "react-icons/vsc"
 
 const transition = { duration: 1, ease: [0.6, -0.05, 0.01, 0.9] }
 
+// const clickHandler = this.state.readyToView ? this.handleLink : null
+
 export default function Navigation({}) {
    const [menuOpen, setMenuOpen] = useNavContext()
+   const [disablemenu, setDisableMenu] = useState(false)
    const router = useRouter()
 
    useEffect(() => {
@@ -25,15 +28,20 @@ export default function Navigation({}) {
             <ul className="flex justify-between  mx-auto my-0 px-[70px] pt-5">
                <li
                   onClick={() => {
-                     setMenuOpen(!menuOpen)
+                     if (menuOpen) {
+                        setMenuOpen(false)
+                     }
                   }}
                >
+                  {/* TODO on logo click go to top when at home use the pagescoll*/}
                   <Link href="/" className="text-lg">
                      Logo
                   </Link>
                </li>
                <li
                   onClick={() => {
+                     if (disablemenu) return
+                     setDisableMenu(true)
                      setMenuOpen(!menuOpen)
                   }}
                   className="cursor-pointer"
@@ -57,6 +65,7 @@ export default function Navigation({}) {
                >
                   <div class="overflow-hidden">
                      <motion.li
+                        onAnimationComplete={() => setDisableMenu(false)}
                         initial={{ y: 80 }}
                         animate={{
                            y: 0,
