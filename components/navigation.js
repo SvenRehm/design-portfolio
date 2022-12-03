@@ -7,6 +7,8 @@ import { motion, AnimatePresence } from "framer-motion"
 import { HiOutlineMenuAlt4 } from "react-icons/hi"
 import { VscClose } from "react-icons/vsc"
 
+import HamburgerMenu from "./hamburgerMenu"
+
 const transition = { duration: 1, ease: [0.6, -0.05, 0.01, 0.9] }
 
 // const clickHandler = this.state.readyToView ? this.handleLink : null
@@ -46,11 +48,7 @@ export default function Navigation({}) {
                   }}
                   className="cursor-pointer"
                >
-                  {menuOpen ? (
-                     <VscClose size={24} />
-                  ) : (
-                     <HiOutlineMenuAlt4 size={24} />
-                  )}
+                  <HamburgerMenu disablemenu={disablemenu} />
                </li>
             </ul>
          </nav>

@@ -17,11 +17,15 @@
       "react-date-picker": "^9.1.0",
       "react-dom": "18.2.0",
       "react-icons": "^4.6.0",
-      "react-page-scroller": "^2.3.1"
+      "react-page-scroller": "^2.3.1",
+      "react-parallax-tilt": "^1.7.72",
+      "styled-components": "^5.3.6"
    },
    "devDependencies": {
+      "@types/node": "18.11.10",
       "autoprefixer": "^10.4.13",
       "postcss": "^8.4.19",
-      "tailwindcss": "^3.2.4"
+      "tailwindcss": "^3.2.4",
+      "typescript": "4.9.3"
    }
 }
