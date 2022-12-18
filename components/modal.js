@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken"
 import getConfig from "next/config"
 import Image from "next/image"
 import { TfiClose } from "react-icons/tfi"
-// import { SlArrowLeft } from "react-icons/Sl"
+import { SlArrowLeft } from "react-icons/Sl"
 // Only holds serverRuntimeConfig and publicRuntimeConfig
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
@@ -61,7 +61,7 @@ function Modal({ isOpen, closeModal, children }) {
          >
             close
             {/* <TfiClose color="white" fontSize="25px" /> */}
-            {/* <SlArrowLeft color="white" fontSize="25px" /> */}
+            <SlArrowLeft color="white" fontSize="25px" />
          </button>
          <div className="flex items-center h-screen">
             <div className="mx-[70px] my-auto ">
