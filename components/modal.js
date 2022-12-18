@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken"
 import getConfig from "next/config"
 import Image from "next/image"
 import { TfiClose } from "react-icons/tfi"
-import { SlArrowLeft } from "react-icons/Sl"
+import { SlArrowLeft } from "react-icons/si"
 // Only holds serverRuntimeConfig and publicRuntimeConfig
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
 
