@@ -14,7 +14,8 @@ const transition = { duration: 1, ease: [0.6, -0.05, 0.01, 0.9] }
 // const clickHandler = this.state.readyToView ? this.handleLink : null
 
 export default function Navigation({}) {
-   const [menuOpen, setMenuOpen] = useNavContext()
+   const [menuOpen, setMenuOpen, modalOpen, setModalOpen] = useNavContext()
+
    const [disablemenu, setDisableMenu] = useState(false)
    const router = useRouter()
 
@@ -27,7 +28,7 @@ export default function Navigation({}) {
    return (
       <>
          <nav className="absolute top-0 left-0 right-0 z-50 w-full">
-            <ul className="flex justify-between  mx-auto my-0 px-[70px] pt-5">
+            <ul className="flex justify-between  mx-auto my-0 px-[70px] pt-5 ">
                <li
                   onClick={() => {
                      if (menuOpen) {
@@ -59,7 +60,7 @@ export default function Navigation({}) {
                   initial="initial"
                   animate="animate"
                   transition={transition}
-                  className="flex flex-col justify-center items-center w-[100vw] h-[100vh] absolute top-0 left-0 z-10 bg-transparent"
+                  className="flex flex-col justify-center items-center w-[100vw] h-[100vh] absolute top-0 left-0 z-40 bg-transparent"
                >
                   <div class="overflow-hidden">
                      <motion.li
@@ -97,6 +98,10 @@ export default function Navigation({}) {
 
                   <div class="overflow-hidden">
                      <motion.li
+                        onClick={() => {
+                           setMenuOpen(false)
+                           setModalOpen(!modalOpen)
+                        }}
                         initial={{ y: 80 }}
                         animate={{
                            y: 0,
@@ -106,9 +111,12 @@ export default function Navigation({}) {
                            y: 80,
                            transition: { delay: 0, ...transition },
                         }}
-                        className="p-2 my-4 text-6xl font-semibold"
+                        className="p-2 my-4 text-6xl font-semibold cursor-pointer"
                      >
-                        <Link href="/contact">contact</Link>
+                        contact
+                        {/* <a href="#" onClick={setModalOpen(true)}>
+                           contact
+                        </a> */}
                      </motion.li>
                   </div>
                </motion.ul>

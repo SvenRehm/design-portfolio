@@ -3,13 +3,28 @@ import Link from "next/link"
 import Image from "next/image"
 import { transition } from "../helper/transitions"
 import { useNavContext } from "../context/navigation"
-import { variants } from "../helper/variants"
+// import { variants } from "../helper/variants"
 
 export default function Landing({}) {
    const [menuOpen, setMenuOpen] = useNavContext()
+
+   console.log(menuOpen)
+
+   const variants = {
+      open: {
+         opacity: 0,
+         y: -500,
+         transition: { duration: 2, ease: [0.43, 0.13, 0.23, 0.96] },
+      },
+      closed: {
+         opacity: 1,
+         y: 0,
+         transition: { duration: 1.5, ease: [0.43, 0.13, 0.23, 0.96] },
+      },
+   }
    return (
       <>
-         <motion.div className="flex items-center justify-center   h-[100vh] px-[70px] ">
+         <motion.div className="flex items-center justify-center h-[100vh] px-[70px] ">
             <div className="w-1/2 ">
                <div className="overflow-hidden">
                   <motion.h1
@@ -23,7 +38,13 @@ export default function Landing({}) {
                         mein name ist
                      </span>
                   </motion.h1>
-                  <h1 className="mb-10 text-[90px] font-bold">SVEN REHM</h1>
+                  <motion.h1
+                     animate={menuOpen ? "open" : "closed"}
+                     variants={variants}
+                     className="mb-10 text-[90px] font-bold"
+                  >
+                     SVEN REHM
+                  </motion.h1>
                </div>
                <div className="mb-10 overflow-hidden">
                   <motion.h3
@@ -38,21 +59,37 @@ export default function Landing({}) {
                      Webseiten.
                   </motion.h3>
                </div>
-
-               <Link href="/portfolio" className="relative text-3xl meins">
-                  Portfolio
-               </Link>
-               <Link
-                  href="/portfolio"
-                  className="relative ml-10 text-3xl meins"
-               >
-                  Portfolio
-               </Link>
+               <motion.div className="inline-block overflow-hidden">
+                  <motion.div
+                     animate={menuOpen ? "open" : "closed"}
+                     variants={variants}
+                  >
+                     <Link
+                        href="/portfolio"
+                        className="relative text-3xl meins"
+                     >
+                        Portfolio
+                     </Link>
+                  </motion.div>
+               </motion.div>
+               <motion.div className="inline-block overflow-hidden">
+                  <motion.div
+                     animate={menuOpen ? "open" : "closed"}
+                     variants={variants}
+                  >
+                     <Link
+                        href="/portfolio"
+                        className="relative ml-10 text-3xl meins"
+                     >
+                        Portfolio
+                     </Link>
+                  </motion.div>
+               </motion.div>
             </div>
 
-            <div className="flex items-center justify-end w-1/2 ">
+            {/* <div className="flex items-center justify-end w-1/2 ">
                <Image alt="me" src="/img1.jpg" width={600} height={600}></Image>
-            </div>
+            </div> */}
          </motion.div>
       </>
    )

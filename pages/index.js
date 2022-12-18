@@ -8,6 +8,7 @@ import { motion } from "framer-motion"
 import Landing from "../components/Landing"
 import Section1 from "../components/Section1"
 import { useNavContext } from "../context/navigation"
+
 import { useInView } from "framer-motion"
 
 const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }
@@ -15,6 +16,7 @@ const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }
 export default function Home({}) {
    const [selectedTable, setSelectedTable] = useState()
    const [menuOpen, setMenuOpen] = useNavContext()
+   // const [modalOpen, setModalOpen] = useModalContext()
 
    useEffect(() => {
       console.log("Element is in view: ")
@@ -44,12 +46,12 @@ export default function Home({}) {
 
          {/* background lines */}
 
-         <div className="bg-lines">
+         {/* <div className="bg-lines">
             <svg>
                <line x1="20%" y1="100%" x2="80%" y2="0" />
                <line x1="80%" y1="100%" x2="20%" y2="0" />
             </svg>
-         </div>
+         </div> */}
 
          {/* scrolleffect */}
          <ReactPageScroller

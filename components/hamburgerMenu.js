@@ -1,4 +1,5 @@
 import styled from "styled-components"
+import { useNavContext } from "../context/navigation"
 
 const transition = { duration: 1, ease: [0.6, -0.05, 0.01, 0.9] }
 
@@ -71,13 +72,15 @@ const Menu = styled.div`
    }
 `
 export default function HamburgerMenu({ disablemenu }) {
+   const [menuOpen, setMenuOpen, modalOpen, setModalOpen] = useNavContext()
    return (
       <>
          <Menu>
-            <div class="menu-icon">
+            <div className=" menu-icon">
                <input
                   disabled={disablemenu}
-                  class="menu-icon__cheeckbox"
+                  checked={menuOpen}
+                  className="menu-icon__cheeckbox"
                   type="checkbox"
                />
                <div>

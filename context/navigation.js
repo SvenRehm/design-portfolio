@@ -4,8 +4,11 @@ const Context = createContext()
 
 export function NavProvider({ children }) {
    const [menuOpen, setMenuOpen] = useState(false)
+   const [modalOpen, setModalOpen] = useState(false)
    return (
-      <Context.Provider value={[menuOpen, setMenuOpen]}>
+      <Context.Provider
+         value={[menuOpen, setMenuOpen, modalOpen, setModalOpen]}
+      >
          {children}
       </Context.Provider>
    )

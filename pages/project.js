@@ -22,8 +22,6 @@ export default function Project({}) {
                   height: 450,
                   top: "50%",
                   left: "50%",
-                  // x: "-50%",
-                  // y: "-50%",
                }}
                animate={{
                   height: 350,
@@ -40,7 +38,13 @@ export default function Project({}) {
                      y: -80,
                      transition: { delay: 0.2, ...transition },
                   }}
-                  src="/image.png"
+                  exit={{
+                     opacity: 0,
+                     transition: { ...transition },
+                  }}
+                  // src="/image.png"
+
+                  src="/fate.jpeg"
                   alt="image"
                   className="w-full "
                />

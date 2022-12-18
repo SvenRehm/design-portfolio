@@ -32,10 +32,16 @@ export default function Section1({}) {
                         Portfolio
                      </motion.h1>
 
-                     <motion.img
+                     {/* <motion.img
                         whileHover={{ scale: 1.1 }}
                         transition={transition}
                         src="/image.png"
+                        alt="bla"
+                     /> */}
+                     <motion.img
+                        whileHover={{ scale: 1.1 }}
+                        transition={transition}
+                        src="/fate.jpeg"
                         alt="bla"
                      />
                   </Link>
