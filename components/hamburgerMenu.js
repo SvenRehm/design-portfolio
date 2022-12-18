@@ -78,6 +78,7 @@ export default function HamburgerMenu({ disablemenu }) {
          <Menu>
             <div className=" menu-icon">
                <input
+                  onChange={() => setMenuOpen(!menuOpen)}
                   disabled={disablemenu}
                   checked={menuOpen}
                   className="menu-icon__cheeckbox"

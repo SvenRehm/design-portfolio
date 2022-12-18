@@ -60,7 +60,7 @@ export default function Navigation({}) {
                   initial="initial"
                   animate="animate"
                   transition={transition}
-                  className="flex flex-col justify-center items-center w-[100vw] h-[100vh] absolute top-0 left-0 z-40 bg-transparent"
+                  className="flex flex-col justify-center items-center w-[100vw] h-[100vh] absolute top-0 left-0 z-40 bg-transparent  pointer-events-none"
                >
                   <div class="overflow-hidden">
                      <motion.li
@@ -74,9 +74,9 @@ export default function Navigation({}) {
                            y: 80,
                            transition: { delay: 0.5, ...transition },
                         }}
-                        className="p-2 my-4 text-6xl font-semibold"
+                        className="p-2 my-4 text-6xl font-semibold pointer-events-auto"
                      >
-                        <Link href="/about">About</Link>
+                        <Link href="/">Portfolio</Link>
                      </motion.li>
                   </div>
                   <div class="overflow-hidden">
@@ -90,9 +90,9 @@ export default function Navigation({}) {
                            y: 80,
                            transition: { delay: 0.3, ...transition },
                         }}
-                        className="p-2 my-4 text-6xl font-semibold"
+                        className="p-2 my-4 text-6xl font-semibold pointer-events-auto"
                      >
-                        <Link href="/">portfolio</Link>
+                        <Link href="/about">About</Link>
                      </motion.li>
                   </div>
 
@@ -111,12 +111,9 @@ export default function Navigation({}) {
                            y: 80,
                            transition: { delay: 0, ...transition },
                         }}
-                        className="p-2 my-4 text-6xl font-semibold cursor-pointer"
+                        className="p-2 my-4 text-6xl font-semibold cursor-pointer pointer-events-auto"
                      >
-                        contact
-                        {/* <a href="#" onClick={setModalOpen(true)}>
-                           contact
-                        </a> */}
+                        Contact
                      </motion.li>
                   </div>
                </motion.ul>

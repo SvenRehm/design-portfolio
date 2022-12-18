@@ -3,12 +3,9 @@ import Link from "next/link"
 import Image from "next/image"
 import { transition } from "../helper/transitions"
 import { useNavContext } from "../context/navigation"
-// import { variants } from "../helper/variants"
 
 export default function Landing({}) {
-   const [menuOpen, setMenuOpen] = useNavContext()
-
-   console.log(menuOpen)
+   const [menuOpen, setMenuOpen, modalOpen, setModalOpen] = useNavContext()
 
    const variants = {
       open: {
@@ -30,33 +27,23 @@ export default function Landing({}) {
                   <motion.h1
                      animate={menuOpen ? "open" : "closed"}
                      variants={variants}
-                     className="font-bold text-7xl"
+                     className="text-6xl font-bold mb-14"
                   >
-                     HALLO,
-                     <span className="mb-10 text-6xl font-normal">
-                        {" "}
-                        mein name ist
-                     </span>
-                  </motion.h1>
-                  <motion.h1
-                     animate={menuOpen ? "open" : "closed"}
-                     variants={variants}
-                     className="mb-10 text-[90px] font-bold"
-                  >
-                     SVEN REHM
+                     Welcome to my portfolio! My name is Sven -<br></br>I am a
+                     web designer
                   </motion.h1>
                </div>
                <div className="mb-10 overflow-hidden">
                   <motion.h3
                      animate={menuOpen ? "open" : "closed"}
                      variants={variants}
-                     className="text-3xl leading-normal font-opensans"
+                     className="ml-10 text-2xl leading-normal font-opensans"
                   >
-                     Ich bin ein{" "}
-                     <span className="font-bold">Webdesigner/Entwickler</span>
-                     <br></br>
-                     mit einer passion für die erschaffung von atemberaubenden
-                     Webseiten.
+                     I design visually appealing and user-friendly websites for
+                     small businesses, startups, and entrepreneurs.<br></br> My
+                     focus is on creating clean and modern websites that
+                     effectively communicate the value proposition of my
+                     clients.
                   </motion.h3>
                </div>
                <motion.div className="inline-block overflow-hidden">
@@ -68,7 +55,7 @@ export default function Landing({}) {
                         href="/portfolio"
                         className="relative text-3xl meins"
                      >
-                        Portfolio
+                        Explore my projects
                      </Link>
                   </motion.div>
                </motion.div>
@@ -78,10 +65,16 @@ export default function Landing({}) {
                      variants={variants}
                   >
                      <Link
-                        href="/portfolio"
+                        href="/"
+                        onClick={(e) => {
+                           e.preventDefault()
+
+                           setMenuOpen(false)
+                           setModalOpen(!modalOpen)
+                        }}
                         className="relative ml-10 text-3xl meins"
                      >
-                        Portfolio
+                        Get in touch
                      </Link>
                   </motion.div>
                </motion.div>
