@@ -59,8 +59,9 @@ function Modal({ isOpen, closeModal, children }) {
                setModalOpen(false)
             }}
          >
+            close
             {/* <TfiClose color="white" fontSize="25px" /> */}
-            <SlArrowLeft color="white" fontSize="25px" />
+            {/* <SlArrowLeft color="white" fontSize="25px" /> */}
          </button>
          <div className="flex items-center h-screen">
             <div className="mx-[70px] my-auto ">
