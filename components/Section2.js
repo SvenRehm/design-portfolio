@@ -5,7 +5,7 @@ import { transition } from "../helper/transitions"
 import { useNavContext } from "../context/navigation"
 import { variants, variants2 } from "../helper/variants"
 
-export default function Section1({}) {
+export default function Section2({}) {
    const [menuOpen, setMenuOpen, modalOpen, setModalOpen] = useNavContext()
 
    return (
@@ -24,16 +24,16 @@ export default function Section1({}) {
                   className="w-[1100px] h-[450px] relative transform -translate-x-1/2 -translate-y-1/2 left-1/2  overflow-hidden"
                >
                   <Link
-                     href="/project"
+                     href="/project2"
                      scroll={false}
                      onClick={() => setModalOpen(false)}
                   >
                      <motion.h1
                         exit={{ opacity: 0 }}
                         transition={transition}
-                        className=" absolute z-50 text-5xl tracking-[20px] text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 font-[100] font-opensans"
+                        className="absolute z-50 text-5xl tracking-[20px] text-white transform -translate-x-1/2 -translate-y-1/2   top-1/2 left-1/2 font-[100] font-opensans"
                      >
-                        animelist
+                        Hairflair
                      </motion.h1>
 
                      {/* <motion.img
@@ -45,7 +45,7 @@ export default function Section1({}) {
                      <motion.img
                         whileHover={{ scale: 1.1 }}
                         transition={transition}
-                        src="/jepanime1.png"
+                        src="/hairflair.png"
                         alt="bla"
                      />
                   </Link>

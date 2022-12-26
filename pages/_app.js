@@ -8,7 +8,7 @@ function MyApp({ Component, pageProps, router }) {
    return (
       <NavProvider>
          <Navigation />
-         <AnimatePresence exitBeforeEnter initial={false}>
+         <AnimatePresence mode="wait" initial={true}>
             <Modal />
             <Component {...pageProps} key={router.route} />
          </AnimatePresence>

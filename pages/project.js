@@ -44,7 +44,7 @@ export default function Project({}) {
                   }}
                   // src="/image.png"
 
-                  src="/fate.jpeg"
+                  src="/jepanime1.png"
                   alt="image"
                   className="w-full "
                />

@@ -7,6 +7,7 @@ import ReactPageScroller from "react-page-scroller"
 import { motion } from "framer-motion"
 import Landing from "../components/Landing"
 import Section1 from "../components/Section1"
+import Section2 from "../components/Section2"
 import { useNavContext } from "../context/navigation"
 
 import { useInView } from "framer-motion"
@@ -60,6 +61,7 @@ export default function Home({}) {
          >
             <Landing />
             <Section1 />
+            <Section2 />
          </ReactPageScroller>
       </>
    )

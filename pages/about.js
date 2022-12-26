@@ -43,7 +43,7 @@ export default function Home({}) {
             <div className="w-[50%] h-full">
                <img
                   className="object-cover w-full h-full"
-                  src="/image2.png"
+                  src="/hero.jpg"
                   alt="image"
                />
             </div>

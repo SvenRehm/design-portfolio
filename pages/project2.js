@@ -45,7 +45,7 @@ export default function Home({}) {
                      y: -80,
                      transition: { delay: 0.2, ...transition },
                   }}
-                  src="/image4.png"
+                  src="/hairflair.png"
                   alt="image"
                   className="object-cover w-full"
                />

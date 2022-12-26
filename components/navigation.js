@@ -45,6 +45,7 @@ export default function Navigation({}) {
                   onClick={() => {
                      if (disablemenu) return
                      setDisableMenu(true)
+                     setModalOpen(false)
                      setMenuOpen(!menuOpen)
                   }}
                   className="cursor-pointer"
@@ -57,10 +58,14 @@ export default function Navigation({}) {
             {menuOpen && (
                <motion.ul
                   variants={parent}
-                  initial="initial"
-                  animate="animate"
+                  initial={{ opacity: 0 }}
+                  animate={{
+                     opacity: 1,
+                     transition: { delay: 0, ...transition },
+                  }}
+                  exit={{ opacity: 0, transition: { delay: 1, ...transition } }}
                   transition={transition}
-                  className="flex flex-col justify-center items-center w-[100vw] h-[100vh] absolute top-0 left-0 z-40 bg-transparent  pointer-events-none"
+                  className="flex flex-col justify-center  w-[100vw] h-[100vh] absolute  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40  pointer-events-none bg-transparent"
                >
                   <div class="overflow-hidden">
                      <motion.li
@@ -74,7 +79,7 @@ export default function Navigation({}) {
                            y: 80,
                            transition: { delay: 0.5, ...transition },
                         }}
-                        className="p-2 my-4 text-6xl font-semibold pointer-events-auto"
+                        className="p-2 my-4 text-6xl font-semibold text-center pointer-events-auto"
                      >
                         <Link href="/">Portfolio</Link>
                      </motion.li>
@@ -90,7 +95,7 @@ export default function Navigation({}) {
                            y: 80,
                            transition: { delay: 0.3, ...transition },
                         }}
-                        className="p-2 my-4 text-6xl font-semibold pointer-events-auto"
+                        className="p-2 my-4 text-6xl font-semibold text-center pointer-events-auto"
                      >
                         <Link href="/about">About</Link>
                      </motion.li>
@@ -111,7 +116,7 @@ export default function Navigation({}) {
                            y: 80,
                            transition: { delay: 0, ...transition },
                         }}
-                        className="p-2 my-4 text-6xl font-semibold cursor-pointer pointer-events-auto"
+                        className="p-2 my-4 text-6xl font-semibold text-center cursor-pointer pointer-events-auto"
                      >
                         Contact
                      </motion.li>
