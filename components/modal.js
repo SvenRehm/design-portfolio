@@ -62,7 +62,7 @@ function Modal({ isOpen, closeModal, children }) {
 
    return (
       <motion.div
-         className="fixed top-0 left-0 z-30 h-full w-[60%] bg-opacity-60 backdrop-blur-sm bg-[url('/background-black.svg')]"
+         className="fixed top-0 left-0 z-30 h-full w-[50%] bg-opacity-60 backdrop-blur-sm bg-[url('/background-black.svg')]"
          initial={{ opacity: 0, x: 0 }}
          exit={{ opacity: 0, x: 0 }}
          animate={modalOpen ? "open" : "closed"}
@@ -78,8 +78,8 @@ function Modal({ isOpen, closeModal, children }) {
             <SlArrowLeft color="white" fontSize="25px" />
          </button>
          <div className="flex items-center h-screen">
-            <div className="mx-[70px] mt-[100px]">
-               <h1 className="mb-[70px] font-bold leading-normal text-white text-3xl">
+            <div className="mx-[70px] mt-[50px]">
+               <h1 className="mb-[70px] font-bold leading-normal text-white text-4xl">
                   Your success is my top priority – <br></br>let&apos;s create a
                   website that helps you thrive.
                </h1>
@@ -99,7 +99,7 @@ function Modal({ isOpen, closeModal, children }) {
                   )}
                   <div>
                      <input
-                        className="w-full h-[44px]   placeholder-white border-white text-lg  pl-5 border  border-solid focus:outline-0 mb-6 bg-transparent text-white"
+                        className="w-full h-[46px]   placeholder-white border-white text-lg  pl-5 border  border-solid focus:outline-0 mb-6 bg-transparent text-white"
                         type="text"
                         value={name}
                         onChange={(event) => setName(event.target.value)}
@@ -109,7 +109,7 @@ function Modal({ isOpen, closeModal, children }) {
 
                   <div className="bg-opacity-100">
                      <input
-                        className="w-full h-[44px] placeholder-white border-white text-lg pl-5 border  border-solid focus:outline-0 mb-6 bg-transparent text-white"
+                        className="w-full h-[46px] placeholder-white border-white text-lg pl-5 border  border-solid focus:outline-0 mb-6 bg-transparent text-white"
                         type="email"
                         value={email}
                         onChange={(event) => setEmail(event.target.value)}
@@ -119,7 +119,7 @@ function Modal({ isOpen, closeModal, children }) {
 
                   <div>
                      <textarea
-                        className="w-full h-[140px] pl-5 pt-3 text-lg placeholder-white border-white border  border-solid focus:outline-0 mb-[40px] bg-transparent text-white"
+                        className="w-full h-[150px] pl-5 pt-3 text-lg placeholder-white border-white border  border-solid focus:outline-0 mb-[60px] bg-transparent text-white"
                         value={message}
                         onChange={(event) => setMessage(event.target.value)}
                         placeholder="Message"
@@ -128,7 +128,7 @@ function Modal({ isOpen, closeModal, children }) {
                   <div>
                      <button
                         //className="text-white border border-white bg-black px-[90px] py-[17px] text-lg uppercase hover:bg-white hover:text-black hover:border-black hover:border-solid hover:border"
-                        className="relative text-2xl text-white meins"
+                        className="relative text-3xl text-white meins"
                         type="submit"
                      >
                         Get in touch
