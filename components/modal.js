@@ -3,8 +3,6 @@ import { useState } from "react"
 import jwt from "jsonwebtoken"
 import getConfig from "next/config"
 import { motion } from "framer-motion"
-import Image from "next/image"
-import { TfiClose } from "react-icons/tfi"
 import { SlArrowLeft } from "react-icons/sl"
 // Only holds serverRuntimeConfig and publicRuntimeConfig
 const { serverRuntimeConfig, publicRuntimeConfig } = getConfig()
@@ -52,6 +50,9 @@ function Modal({ isOpen, closeModal, children }) {
          const json = await res.json()
          if (res.ok) {
             setStatus("success")
+            setName("")
+            setEmail("")
+            setMessage("")
          } else {
             setStatus("error")
          }
@@ -90,9 +91,13 @@ function Modal({ isOpen, closeModal, children }) {
                   className="xl:w-[500px] lg:w-[480px] 2xl:w-[600px]"
                   onSubmit={handleSubmit}
                >
-                  {status === "success" && <p>Thank you for your message!</p>}
+                  {status === "success" && (
+                     <p className="mb-[70px] font-bold leading-normal text-green-500 text-lg">
+                        Thank you for your message!
+                     </p>
+                  )}
                   {status === "error" && (
-                     <p>
+                     <p className="mb-[70px] font-bold leading-normal text-red-500 text-lg">
                         There was an error sending your message. Please try
                         again.
                      </p>
@@ -128,7 +133,7 @@ function Modal({ isOpen, closeModal, children }) {
                   <div>
                      <button
                         //className="text-white border border-white bg-black px-[90px] py-[17px] text-lg uppercase hover:bg-white hover:text-black hover:border-black hover:border-solid hover:border"
-                        className="relative text-3xl text-white meins"
+                        className="relative text-3xl text-white button"
                         type="submit"
                      >
                         Get in touch

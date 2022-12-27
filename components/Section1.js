@@ -10,9 +10,9 @@ export default function Section1({}) {
 
    return (
       <>
-         <section className="h-[100vh] section relative">
+         <section className="h-[100vh] relative">
             <div
-               className="relative overflow-hidden hiddenbyme top-1/2 left-1/2 
+               className="relative overflow-hidden  top-1/2 left-1/2 
                   w-[1100px]
                   h-[450px] transform -translate-x-1/2 -translate-y-1/2 "
                // className="width-[1100px] heigth-[450px] top-1/2 left-1/2 relative transform -translate-x-1/2 -translate-y-1/2 overflow-hidden "
@@ -31,9 +31,9 @@ export default function Section1({}) {
                      <motion.h1
                         exit={{ opacity: 0 }}
                         transition={transition}
-                        className=" absolute z-50 text-5xl tracking-[20px] text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 font-[100] font-opensans"
+                        className=" absolute z-50 text-5xl tracking-[40px] text-white transform -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 font-[100] font-roboto"
                      >
-                        animelist
+                        ANIMELIST
                      </motion.h1>
 
                      {/* <motion.img

@@ -10,6 +10,7 @@ module.exports = {
          fontFamily: {
             playfair: ["Playfair Display", "sans-serif"],
             opensans: ["Open Sans", "sans-serif"],
+            roboto: ["Roboto", "sans-serif"],
          },
       },
    },

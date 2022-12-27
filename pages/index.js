@@ -8,16 +8,15 @@ import { motion } from "framer-motion"
 import Landing from "../components/Landing"
 import Section1 from "../components/Section1"
 import Section2 from "../components/Section2"
-import { useNavContext } from "../context/navigation"
+
+import { usePageContext } from "../context/page"
 
 import { useInView } from "framer-motion"
 
 const transition = { duration: 0.6, ease: [0.43, 0.13, 0.23, 0.96] }
 
 export default function Home({}) {
-   const [selectedTable, setSelectedTable] = useState()
-   const [menuOpen, setMenuOpen] = useNavContext()
-   // const [modalOpen, setModalOpen] = useModalContext()
+   const [page, setPage] = usePageContext()
 
    useEffect(() => {
       console.log("Element is in view: ")
@@ -34,13 +33,18 @@ export default function Home({}) {
       },
    }
 
+   const handlePageChange = (number) => {
+      setPage(number)
+   }
+
    return (
       <>
          <Head>
             <title>Portfolio | Sven Rehm</title>
             <meta
-               name="description"
-               content="Portfolio von Sven Rehm, er zeigt seine besten designs"
+               name="Portfolio | Sven Rehm"
+               content="I design visually appealing and user-friendly websites for small businesses, startups, and entrepreneurs.
+               My focus is on creating clean and modern websites that effectively communicate the value proposition of my clients."
             />
             <link rel="icon" href="/favicon.ico" />
          </Head>
@@ -57,9 +61,11 @@ export default function Home({}) {
          {/* scrolleffect */}
          <ReactPageScroller
             {...options}
+            customPageNumber={page}
+            pageOnChange={handlePageChange}
             ref={(c) => (this.reactPageScroller = c)}
          >
-            <Landing />
+            <Landing setPage={setPage} />
             <Section1 />
             <Section2 />
          </ReactPageScroller>

@@ -2,19 +2,40 @@ import Head from "next/head"
 import { useState } from "react"
 import Image from "next/image"
 import Navigation from "../components/navigation"
+import { motion } from "framer-motion"
 import ReactPageScroller from "react-page-scroller"
-export default function Home({}) {
-   const [menuOpen, setMenuOpen] = useState(false)
-   const [selectedTable, setSelectedTable] = useState()
+import { useNavContext } from "../context/navigation"
 
-   //click
-   function clicky() {}
-   let options = {
-      animationTimer: 850,
-      animationTimerBuffer: 0,
-      renderAllPagesOnFirstRender: true,
+export default function Home({}) {
+   const [menuOpen, setMenuOpen, modalOpen, setModalOpen] = useNavContext()
+
+   const variants = {
+      open: {
+         opacity: 1,
+         x: -1000,
+         transition: { duration: 1.5, ease: [0.43, 0.13, 0.23, 0.96] },
+      },
+      closed: {
+         opacity: 1,
+         x: 0,
+         transition: { duration: 1.5, ease: [0.43, 0.13, 0.23, 0.96] },
+      },
    }
 
+   const variants2 = {
+      open: {
+         opacity: 1,
+         x: 1000,
+         transition: { duration: 1.3, ease: [0.43, 0.13, 0.23, 0.96] },
+      },
+      closed: {
+         opacity: 1,
+         x: 0,
+         transition: { duration: 1.3, ease: [0.43, 0.13, 0.23, 0.96] },
+      },
+   }
+
+   const transition = { duration: 1.3, ease: [0.43, 0.13, 0.23, 0.96] }
    return (
       <>
          <Head>
@@ -23,8 +44,15 @@ export default function Home({}) {
             <link rel="icon" href="/favicon.ico" />
          </Head>
 
-         <div className="flex justify-between h-screen ">
-            <div className="w-[40%] mt-[250px] pl-[70px]">
+         <motion.div className="flex justify-between h-screen overflow-hidden">
+            <motion.div
+               className="w-[40%] mt-[250px] pl-[70px]"
+               initial={{ opacity: 0, x: -1000 }}
+               exit={{ opacity: 0, x: -1000 }}
+               transition={transition}
+               animate={menuOpen ? "open" : "closed"}
+               variants={variants}
+            >
                <h1 className="text-6xl mb-[70px]">
                   Web Design That Works for You:
                   <br></br>Sven&apos;s Philosophy
@@ -39,15 +67,22 @@ export default function Home({}) {
                   target audiences. Let&apos;s work together to create a website
                   that truly stands out from the competition.
                </p>
-            </div>
-            <div className="w-[50%] h-full">
+            </motion.div>
+            <motion.div
+               className="w-[50%] h-full"
+               initial={{ opacity: 0, x: 1000 }}
+               exit={{ opacity: 0, x: 1000 }}
+               transition={transition}
+               animate={menuOpen ? "open" : "closed"}
+               variants={variants2}
+            >
                <img
                   className="object-cover w-full h-full"
                   src="/hero.jpg"
                   alt="image"
                />
-            </div>
-         </div>
+            </motion.div>
+         </motion.div>
       </>
    )
 }

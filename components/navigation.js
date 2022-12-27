@@ -3,19 +3,19 @@ import { useRouter } from "next/router"
 import Link from "next/link"
 import { useNavContext } from "../context/navigation"
 import { motion, AnimatePresence } from "framer-motion"
-
-import { HiOutlineMenuAlt4 } from "react-icons/hi"
-import { VscClose } from "react-icons/vsc"
-
 import HamburgerMenu from "./hamburgerMenu"
+import { usePageContext } from "../context/page"
 
 const transition = { duration: 1, ease: [0.6, -0.05, 0.01, 0.9] }
 
 // const clickHandler = this.state.readyToView ? this.handleLink : null
 
+const goToPage = (pageNumber) => {
+   reactPageScroller.goToPage(pageNumber)
+}
 export default function Navigation({}) {
    const [menuOpen, setMenuOpen, modalOpen, setModalOpen] = useNavContext()
-
+   const [page, setPage] = usePageContext()
    const [disablemenu, setDisableMenu] = useState(false)
    const router = useRouter()
 
@@ -37,9 +37,11 @@ export default function Navigation({}) {
                   }}
                >
                   {/* TODO on logo click go to top when at home use the pagescoll*/}
-                  <Link href="/" className="text-lg">
-                     Logo
-                  </Link>
+                  <div>
+                     <Link href="/" className="text-lg font-roboto">
+                        SR
+                     </Link>
+                  </div>
                </li>
                <li
                   onClick={() => {
@@ -65,7 +67,7 @@ export default function Navigation({}) {
                   }}
                   exit={{ opacity: 0, transition: { delay: 1, ...transition } }}
                   transition={transition}
-                  className="flex flex-col justify-center  w-[100vw] h-[100vh] absolute  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40  pointer-events-none bg-transparent"
+                  className="flex flex-col justify-center h-[100vh] absolute  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-40  pointer-events-none bg-transparent"
                >
                   <div class="overflow-hidden">
                      <motion.li
@@ -79,9 +81,17 @@ export default function Navigation({}) {
                            y: 80,
                            transition: { delay: 0.5, ...transition },
                         }}
-                        className="p-2 my-4 text-6xl font-semibold text-center pointer-events-auto"
+                        className="relative p-2 my-4 text-6xl font-semibold text-center pointer-events-auto button"
                      >
-                        <Link href="/">Portfolio</Link>
+                        <Link
+                           href="/"
+                           onClick={() => {
+                              setPage(1)
+                              setMenuOpen(false)
+                           }}
+                        >
+                           Portfolio
+                        </Link>
                      </motion.li>
                   </div>
                   <div class="overflow-hidden">
@@ -95,7 +105,7 @@ export default function Navigation({}) {
                            y: 80,
                            transition: { delay: 0.3, ...transition },
                         }}
-                        className="p-2 my-4 text-6xl font-semibold text-center pointer-events-auto"
+                        className="relative p-2 my-4 text-6xl font-semibold text-center pointer-events-auto button"
                      >
                         <Link href="/about">About</Link>
                      </motion.li>
@@ -116,7 +126,7 @@ export default function Navigation({}) {
                            y: 80,
                            transition: { delay: 0, ...transition },
                         }}
-                        className="p-2 my-4 text-6xl font-semibold text-center cursor-pointer pointer-events-auto"
+                        className="relative p-2 my-4 text-6xl font-semibold text-center cursor-pointer pointer-events-auto button"
                      >
                         Contact
                      </motion.li>
